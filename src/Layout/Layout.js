@@ -14,6 +14,7 @@ class Layout extends React.Component {
       this.setFilter = this.setFilter.bind(this);
   }
 
+
   setFilter(event) {
      this.setState({ selectedFilter: event.target.name });
   }
@@ -47,15 +48,16 @@ class Layout extends React.Component {
               className={'map'}
               zoom={10}
               initialCenter={{lat: 32.7157, lng: -117.1611}}>
-              {incidents.filter((i) => i.incident_type === this.state.selectedFilter || !this.state.selectedFilter).map(i => {
-                console.log(incidents)
-                return (
-             <Marker
-               incident_type={i.incident_type}
-               position={{lat: i.lat, lng: i.lng}}
-               icon={i.icon} />
-                        )
-             })}
+              {incidents
+                  .filter((i) => i.incident_type === this.state.selectedFilter || !this.state.selectedFilter)
+                  .map(i => {
+                      console.log(incidents)
+                      return (
+                         <Marker
+                           position={{lat: i.lat, lng: i.lng}}
+                           icon={i.icon} />
+                      )
+                   })}
             </Map>
           </div>
       </div>
